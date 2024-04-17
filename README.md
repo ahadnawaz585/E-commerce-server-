@@ -7,7 +7,7 @@ This project is a TypeScript project utilizing Prisma ORM to interact with a Pos
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ahadnawaz585/E-commerce-server-
    ```
 
 2. Navigate to the project directory:
