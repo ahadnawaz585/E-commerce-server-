@@ -13,7 +13,7 @@ This project is a TypeScript project utilizing Prisma ORM to interact with a Pos
 2. Navigate to the project directory:
 
    ```bash
-   cd <project-directory>
+   cd E-commerce-server-
    ```
 
 3. Install dependencies:
