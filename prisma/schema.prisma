@@ -1,0 +1,166 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Table
+// User Table
+model User {
+  id         String    @id @default(uuid())
+  username   String    @unique
+  password   String
+  role       Role
+  customers  Customer[]
+  blacklistTokens  BlacklistToken[]  // Add this line
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+
+enum Role {
+  customer
+  admin
+}
+
+// Customer details table
+model Customer {
+  id              String      @id @default(uuid())
+  name            String
+  email           String      @unique
+  phone_number    String?
+  address         String?
+  user            User?       @relation(fields: [user_id], references: [id]) // Change fields to reference user_id
+  user_id         String?
+  orders          Order[]     // Added for bidirectional relation
+  shoppingCarts   ShoppingCart[]  // Added for bidirectional relation
+  reviews         Review[]    // Added for bidirectional relation
+  refunds         Refund[]    // Added for bidirectional relation
+  wishlists       Wishlist[]  // Added for bidirectional relation
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+// Product Table
+model Product {
+  id              String      @id @default(uuid())
+  name            String
+  description     String?
+  price           Float
+  category        String?
+  stock_quantity  Int         @default(0)
+  shoppingCarts   ShoppingCart[]  // Added for bidirectional relation
+  reviews         Review[]    // Added for bidirectional relation
+  wishlists       Wishlist[]  // Added for bidirectional relation
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+// Order Table
+// Order Table
+model Order {
+  id                String     @id @default(uuid())
+  customerId        String
+  customer          Customer   @relation(fields: [customerId], references: [id])
+  order_date        DateTime   @default(now())
+  total_amount      Float
+  status            OrderStatus
+  shipping_address  String?
+  refunds           Refund[]   // Add this line
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+
+enum OrderStatus {
+  pending
+  processing
+  shipped
+  delivered
+  canceled
+}
+
+// Cart Table
+model ShoppingCart {
+  id                 String       @id @default(uuid())
+  customerId         String
+  customer           Customer     @relation(fields: [customerId], references: [id])
+  productId          String
+  product            Product      @relation(fields: [productId], references: [id])
+  quantity           Int          @default(0)
+  added_to_cart_date DateTime     @default(now())
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+// Reviews Table
+model Review {
+  id             String      @id @default(uuid())
+  productId      String
+  product        Product     @relation(fields: [productId], references: [id])
+  customerId     String
+  customer       Customer    @relation(fields: [customerId], references: [id])
+  rating         Int
+  review_text    String?
+  review_date    DateTime    @default(now())
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+// Refund Table
+// Refund Table
+model Refund {
+  id               String      @id @default(uuid())
+  orderId          String
+  order            Order       @relation(fields: [orderId], references: [id])
+  return_date      DateTime    @default(now())
+  reason           String
+  status           RefundStatus
+  refund_amount    Float
+  customerId       String      // Add this field
+  customer         Customer    @relation(fields: [customerId], references: [id]) // Update this line
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+
+
+enum RefundStatus {
+  pending
+  approved
+  rejected
+}
+
+// Wishlist Table
+model Wishlist {
+  id                     String      @id @default(uuid())
+  customerId             String
+  customer               Customer    @relation(fields: [customerId], references: [id])
+  productId              String
+  product                Product     @relation(fields: [productId], references: [id])
+  added_to_wishlist_date DateTime    @default(now())
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}
+
+model BlacklistToken {
+  id         String    @id @default(uuid())
+  token      String    @unique
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+  createdAt       DateTime?
+  updatedAt       DateTime?
+  isDeleted       DateTime?
+}

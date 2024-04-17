@@ -1,0 +1,53 @@
+{
+  "name": "e-commerce-server-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"tsc -w\" \"nodemon server.js\"",
+    "start-server": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahadnawaz585/E-commerce-server-.git"
+  },
+  "keywords": [
+    "E",
+    "commerce"
+  ],
+  "author": "AHAD , AHMAD",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^4.17.21",
+    "@types/express-validator": "^3.0.0",
+    "@types/node": "^20.10.4",
+    "@types/nodemon": "^1.19.6",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.9.1",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/pdfmake": "^0.2.9",
+    "canvas": "^2.11.2",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "nodemon": "^3.0.3",
+    "pdfmake": "^0.2.9",
+    "prisma": "^5.9.1",
+    "prisma-query-log": "^3.2.0",
+    "typescript": "^5.3.3"
+  },
+  "bugs": {
+    "url": "https://github.com/ahadnawaz585/E-commerce-server-/issues"
+  },
+  "homepage": "https://github.com/ahadnawaz585/E-commerce-server-#readme"
+}
