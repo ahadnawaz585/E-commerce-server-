@@ -22,7 +22,8 @@ This project is a TypeScript project utilizing Prisma ORM to interact with a Pos
    npm install
    ```
 
-4. Set up your PostgreSQL database and update the database URL in the `.env` file.
+4. Set up your PostgreSQL database and update the database URL in the `.env` 
+by renaming `.env.example` .
 
 5. Run the migration to create the database schema:
 

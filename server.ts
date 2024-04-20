@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import RoutesHelper from "./src/helper/routes.helper";
 
+import OrderRoutes from "./src/routes/order.routes";
 import UserDataRoutes from "./src/routes/userData.routes";
 import AuthenticationRoutes from "./src/routes/user.routes";
 
@@ -42,7 +43,7 @@ class App {
   }
 
   private initializeRoutes(): void {
-    const routes = [UserDataRoutes]; //authenticated
+    const routes = [UserDataRoutes,OrderRoutes]; //authenticated
 
     const openRoutes: any[] = [AuthenticationRoutes]; //open routes
 
