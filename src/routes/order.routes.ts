@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from 'express';
+import express, {  Router } from 'express';
 import OrderController from '../controllers/order.controller';
 
 class OrderRoutes {
@@ -20,6 +20,7 @@ class OrderRoutes {
     this.router.put('/update', this.controller.updateOrder.bind(this.controller));
     this.router.post('/restore', this.controller.restoreOrder.bind(this.controller));
     this.router.post('/delete', this.controller.deleteOrder.bind(this.controller));
+    this.router.get('/getPending', this.controller.getPendingOrders.bind(this.controller));
   }
 
   public getRouter(): Router {

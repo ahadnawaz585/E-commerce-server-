@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import prisma from "./baseModel";
-
+import { OrderStatus } from "../enums/orderStatus";
+import { Order } from "../Types/order";
 const orderModel = prisma.$extends({
   model: {
     order: {
@@ -9,9 +10,11 @@ const orderModel = prisma.$extends({
           await prisma.$queryRaw(Prisma.sql`SELECT * FROM "Order" WHERE total_amount > ${value};
         `);
       },
-      //   async abc(){
-      //another example method
-      //   }
+      async getPendingOrders(this: any, value: OrderStatus): Promise<Order[]> {
+        const orders:Order[] = await prisma.$queryRaw(Prisma.sql`SELECT * FROM "Order" WHERE status = ${value};`
+        )
+        return orders;
+      },
     },
   },
 });

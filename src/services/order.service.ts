@@ -1,6 +1,7 @@
 import orderModel from "../models/order.model";
 import { paginatedData } from "../Types/paginatedData";
 import { Order } from "../Types/order";
+import { OrderStatus } from "../enums/orderStatus";
 
 class OrderService {
   async getOrder(page: number, pageSize: number): Promise<paginatedData> {
@@ -35,8 +36,8 @@ class OrderService {
     return await orderModel.order.uetFindById(id);
   }
 
-  async exampleMethod(value: number): Promise<any> {
-    return await orderModel.order.exampleMethod(value);
+  async getPendingOrders(value: OrderStatus): Promise<Order[]> {
+    return await orderModel.order.getPendingOrders(value);
   }
 }
 

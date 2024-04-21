@@ -43,9 +43,10 @@ class App {
   }
 
   private initializeRoutes(): void {
-    const routes = [UserDataRoutes,OrderRoutes]; //authenticated
+    const routes = [UserDataRoutes]; //authenticated
+    //http:localhost:3001/order/get
 
-    const openRoutes: any[] = [AuthenticationRoutes]; //open routes
+    const openRoutes: any[] = [AuthenticationRoutes,OrderRoutes]; //open routes
 
     this.app.get("/", (req: Request, res: Response) => {
       res.json({ message: "App is running" });

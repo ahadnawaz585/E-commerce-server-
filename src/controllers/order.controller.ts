@@ -68,13 +68,14 @@ class OrderController extends BaseController<OrderService> {
     await this.handleRequest(operation, successMessage, errorMessage, res);
   }
 
-  async exampleMethod(req: Request, res: Response) {
+  async getPendingOrders(req: Request, res: Response) {
     let { value } = req.body;
-    let operation = () => this.service.exampleMethod(value);
-    let successMessage = ' Order retrieved successfully!';
+    let operation = () => this.service.getPendingOrders(value);
+    let successMessage = ' Orders retrieved successfully!';
     let errorMessage = 'Error retrieving  Order:';
     await this.handleRequest(operation, successMessage, errorMessage, res);
   }
+  
 
 }
 
