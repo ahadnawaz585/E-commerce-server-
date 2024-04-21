@@ -2,7 +2,6 @@ import orderModel from "../models/order.model";
 import { paginatedData } from "../Types/paginatedData";
 import { Order } from "../Types/order";
 import { OrderStatus } from "../enums/orderStatus";
-
 class OrderService {
   async getOrder(page: number, pageSize: number): Promise<paginatedData> {
     return await orderModel.order.uetPgFindMany(page, pageSize);

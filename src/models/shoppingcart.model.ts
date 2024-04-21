@@ -1,8 +1,7 @@
 import prisma from "./baseModel";
-import { Customer } from "../Types/customer";
-const customerModel= prisma.$extends({
+const ShoppingCartModel= prisma.$extends({
   model: {
-    customer: {
+    shoppingCart: {
     //   async exampleMethod(this: any, value: number) {
     //     const data =
     //       await prisma.$queryRaw(Prisma.sql`SELECT * FROM "Order" WHERE total_amount > ${value};
@@ -13,4 +12,4 @@ const customerModel= prisma.$extends({
   },
 });
 
-export default customerModel;
+export default ShoppingCartModel;
