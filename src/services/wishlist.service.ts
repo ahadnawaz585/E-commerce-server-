@@ -6,7 +6,7 @@ import { paginatedData } from "../Types/paginatedData";
 
 
 class WishlistService {
-    async getWishlistOfAUser(value: Customer): Promise<Wishlist[]> {
+    async getWishlistOfAUser(value: Customer ): Promise<Wishlist[]> {
         return await wishlistModel.wishlist.getWishlistOfAUser(value);
     }
     async getWishlist(page: number, pageSize: number): Promise<paginatedData> {

@@ -1,7 +1,7 @@
 import blacklistTokenModel from "../models/blackListToken.model";
 import { BlacklistToken } from "../Types/blackList";
 
-class BlacklistTokenervice {
+class BlacklistTokenservice {
   async getAllTokens(): Promise<BlacklistToken[]> {
     return await blacklistTokenModel.blacklistToken.uetFindMany();
   }
@@ -22,4 +22,4 @@ class BlacklistTokenervice {
   }
 }
 
-export default BlacklistTokenervice;
+export default BlacklistTokenservice;

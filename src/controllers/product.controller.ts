@@ -16,8 +16,8 @@ class ProductController extends BaseController<ProductService> {
   async getProduct(req: Request, res: Response) {
     let { page, pageSize } = req.body;
     let operation = () => this.service.getProduct(page, pageSize);
-    let successMessage = 'Products retrieved successfully!';
-    let errorMessage = 'Error retrieving Products:';
+    let successMessage = 'Product retrieved successfully!';
+    let errorMessage = 'Error retrieving Product:';
     await this.handleRequest(operation, successMessage, errorMessage, res);
   }
 
@@ -29,7 +29,7 @@ class ProductController extends BaseController<ProductService> {
   }
 
   async createProduct(req: Request, res: Response) {
-    let productData:  | Product[] = req.body;
+    let productData:Product  | Product[] = req.body;
     let operation = () => this.service.createProduct(productData);
     let successMessage = 'Products created successfully!';
     let errorMessage = 'Error creating Products:';

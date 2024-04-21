@@ -29,7 +29,7 @@ class ShoppingCartController extends BaseController<ShoppingCartService> {
   }
 
   async createShoppingCart(req: Request, res: Response) {
-    let ShoppingCartData:  | ShoppingCart[] = req.body;
+    let ShoppingCartData: ShoppingCart | ShoppingCart[] = req.body;
     let operation = () => this.service.createShoppingCart(ShoppingCartData);
     let successMessage = 'ShoppingCarts created successfully!';
     let errorMessage = 'Error creating ShoppingCarts:';
