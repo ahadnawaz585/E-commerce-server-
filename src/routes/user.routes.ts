@@ -1,7 +1,7 @@
   import express, { Router } from 'express';
   import UserController from '../controllers/user.controller';
 
-  class AuthenticationRoutes {
+  class UserRoutes {
     private router: Router;
     private controller: UserController;
 
@@ -24,4 +24,4 @@
     }
   }
 
-  export default AuthenticationRoutes;
+  export default UserRoutes;

@@ -5,7 +5,7 @@ import RoutesHelper from "./src/helper/routes.helper";
 
 import OrderRoutes from "./src/routes/order.routes";
 import UserDataRoutes from "./src/routes/userData.routes";
-import AuthenticationRoutes from "./src/routes/user.routes";
+import UserRoutes from "./src/routes/user.routes";
 
 class App {
   private app: Express;
@@ -46,7 +46,7 @@ class App {
     const routes = [UserDataRoutes]; //authenticated
     //http:localhost:3001/order/get
 
-    const openRoutes: any[] = [AuthenticationRoutes,OrderRoutes]; //open routes
+    const openRoutes: any[] = [UserRoutes,OrderRoutes]; //open routes
 
     this.app.get("/", (req: Request, res: Response) => {
       res.json({ message: "App is running" });
