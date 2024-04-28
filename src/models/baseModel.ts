@@ -127,6 +127,24 @@ const prisma = basePrisma.$extends({
 
         return data;
       },
+      async uetFindByCategory(this: any, category: string) {
+        const data = await this.findUnique({
+          where: {
+            category: category,
+          },
+        });
+
+        return data;
+      },
+      async uetFindByName(this: any, name: string) {
+        const data = await this.findUnique({
+          where: {
+            name: name,
+          },
+        });
+
+        return data;
+      },
 
       async uetCount(this: any) {
         const count = await this.count({
@@ -167,7 +185,7 @@ const prisma = basePrisma.$extends({
         return data;
       },
 
-     
+
     },
   },
 });

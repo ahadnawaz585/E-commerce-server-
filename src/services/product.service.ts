@@ -31,6 +31,12 @@ class ProductService {
     async getProductById(id: string): Promise<Product> {
         return await productModel.product.uetFindById(id);
     }
+    async getProductByCategory(category: string): Promise<Product> {
+        return await productModel.product.uetFindByCategory(category);
+    }
+    async getProductByName(name: string): Promise<Product> {
+        return await productModel.product.uetFindByName(name);
+    }
 
 }
 
