@@ -29,7 +29,7 @@ class ProductController extends BaseController<ProductService> {
   }
 
   async createProduct(req: Request, res: Response) {
-    let productData:Product  | Product[] = req.body;
+    let productData: Product | Product[] = req.body;
     let operation = () => this.service.createProduct(productData);
     let successMessage = 'Products created successfully!';
     let errorMessage = 'Error creating Products:';
@@ -67,7 +67,46 @@ class ProductController extends BaseController<ProductService> {
     let errorMessage = 'Error retrieving  Products:';
     await this.handleRequest(operation, successMessage, errorMessage, res);
   }
-  
+  async getProductByCategory(req: Request, res: Response) {
+    let { category } = req.body;
+    let operation = () => this.service.getProductByCategory(category);
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async getProductByName(req: Request, res: Response) {
+    let { name } = req.body;
+    let operation = () => this.service.getProductByName(name);
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async reviewsOnProduct(req: Request, res: Response) {
+    let { postId } = req.body;
+    let operation = () => this.service.reviewsOnProduct(postId);
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async getAllProductsWithReviews(req: Request, res: Response) {
+    let operation = () => this.service.getAllProductsWithReviews();
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async getProductsWithRecentReview(req: Request, res: Response) {
+    let operation = () => this.service.getProductsWithRecentReview();
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async getProductsWithAverageRating(req: Request, res: Response) {
+    let operation = () => this.service.getProductsWithAverageRating();
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+
 
 }
 

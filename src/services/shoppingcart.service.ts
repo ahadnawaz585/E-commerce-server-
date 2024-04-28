@@ -34,6 +34,9 @@ class ShoppingCartService {
     async getShoppingCartById(id: string): Promise<ShoppingCart> {
         return await ShoppingCartModel.shoppingCart.uetFindById(id);
     }
+    async getShoppingCartByName(name: string): Promise<ShoppingCart> {
+        return await ShoppingCartModel.shoppingCart.uetFindByName(name);
+    }
 
 }
 export default ShoppingCartService;

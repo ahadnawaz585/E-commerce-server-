@@ -1,4 +1,4 @@
-import express, {  Router } from 'express';
+import express, { Router } from 'express';
 import ShoppingCartController from '../controllers/shoppingCart.controller';
 
 class shoppingCartRoutes {
@@ -12,10 +12,11 @@ class shoppingCartRoutes {
   }
 
   private initializeRoutes(): void {
-    this.router.get('/get', this.controller.getAllShoppingCarts.bind(this.controller)); 
+    this.router.get('/get', this.controller.getAllShoppingCarts.bind(this.controller));
     this.router.post('/get', this.controller.getShoppingCart.bind(this.controller)); //paginated
     this.router.get('/getSize', this.controller.getShoppingCartCount.bind(this.controller)); //size
     this.router.post('/getById', this.controller.getShoppingCartById.bind(this.controller));
+    this.router.post('/getByName', this.controller.getShoppingCartByName.bind(this.controller));
     this.router.post('/create', this.controller.createShoppingCart.bind(this.controller));
     this.router.put('/update', this.controller.updateShoppingCart.bind(this.controller));
     this.router.post('/restore', this.controller.restoreShoppingCart.bind(this.controller));

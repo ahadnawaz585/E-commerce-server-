@@ -67,7 +67,14 @@ class ShoppingCartController extends BaseController<ShoppingCartService> {
     let errorMessage = 'Error retrieving ShoppingCarts:';
     await this.handleRequest(operation, successMessage, errorMessage, res);
   }
-  
+  async getShoppingCartByName(req: Request, res: Response) {
+    let { name } = req.body;
+    let operation = () => this.service.getShoppingCartByName(name);
+    let successMessage = ' ShoppingCarts retrieved successfully!';
+    let errorMessage = 'Error retrieving ShoppingCarts:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+
 
 }
 
