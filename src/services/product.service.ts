@@ -1,6 +1,7 @@
 import productModel from "../models/product.model";
 import { paginatedData } from "../Types/paginatedData";
 import { Product } from "../Types/product";
+import { Review } from "../Types/review";
 class ProductService {
 
     async getProduct(page: number, pageSize: number): Promise<paginatedData> {
@@ -36,6 +37,18 @@ class ProductService {
     }
     async getProductByName(name: string): Promise<Product> {
         return await productModel.product.uetFindByName(name);
+    }
+    async reviewsOnProduct(postId: string): Promise<{ product: Product, reviews: Review[] }[]> {
+        return await productModel.product.reviewsOnProduct(postId);
+    }
+    async getAllProductsWithReviews(): Promise<{ product: Product; reviews: Review[] }[]> {
+        return await productModel.product.getAllProductsWithReviews();
+    }
+    async getProductsWithRecentReview(): Promise<{ product: Product; reviews: Review[] }[]> {
+        return await productModel.product.getAllProductsWithReviews();
+    }
+    async getProductsWithAverageRating(): Promise<{ product: Product; reviews: Review[] }[]> {
+        return await productModel.product.getAllProductsWithReviews();
     }
 
 }

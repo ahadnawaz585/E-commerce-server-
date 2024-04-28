@@ -81,6 +81,31 @@ class ProductController extends BaseController<ProductService> {
     let errorMessage = 'Error retrieving  Products:';
     await this.handleRequest(operation, successMessage, errorMessage, res);
   }
+  async reviewsOnProduct(req: Request, res: Response) {
+    let { postId } = req.body;
+    let operation = () => this.service.reviewsOnProduct(postId);
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async getAllProductsWithReviews(req: Request, res: Response) {
+    let operation = () => this.service.getAllProductsWithReviews();
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async getProductsWithRecentReview(req: Request, res: Response) {
+    let operation = () => this.service.getProductsWithRecentReview();
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
+  async getProductsWithAverageRating(req: Request, res: Response) {
+    let operation = () => this.service.getProductsWithAverageRating();
+    let successMessage = ' Products retrieved successfully!';
+    let errorMessage = 'Error retrieving  Products:';
+    await this.handleRequest(operation, successMessage, errorMessage, res);
+  }
 
 
 }

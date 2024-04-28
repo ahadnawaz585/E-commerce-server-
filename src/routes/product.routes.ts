@@ -22,6 +22,10 @@ class productRoutes {
     this.router.put('/update', this.controller.updateProduct.bind(this.controller));
     this.router.post('/restore', this.controller.restoreProduct.bind(this.controller));
     this.router.post('/delete', this.controller.deleteProduct.bind(this.controller));
+    this.router.get('/Productreviews', this.controller.reviewsOnProduct.bind(this.controller));
+    this.router.get('/allProductWithreviews', this.controller.getAllProductsWithReviews.bind(this.controller));
+    this.router.get('/recentReviews', this.controller.getProductsWithRecentReview.bind(this.controller));
+    this.router.get('/reviewsWithAvgRating', this.controller.getProductsWithAverageRating.bind(this.controller));
   }
 
   public getRouter(): Router {
