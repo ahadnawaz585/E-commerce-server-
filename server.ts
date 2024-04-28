@@ -2,7 +2,12 @@ import express, { Express, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import RoutesHelper from "./src/helper/routes.helper";
-
+import customerRoutes from "./src/routes/customer.routes";
+import productRoutes from "./src/routes/product.routes";
+import refundRoutes from "./src/routes/refund.routes";
+import reviewRoutes from "./src/routes/review.routes";
+import shoppingCartRoutes from "./src/routes/shoppingCart.routes";
+import wishlistRoutes from "./src/routes/wishlist.routes";
 import OrderRoutes from "./src/routes/order.routes";
 import UserDataRoutes from "./src/routes/userData.routes";
 import UserRoutes from "./src/routes/user.routes";
@@ -43,10 +48,20 @@ class App {
   }
 
   private initializeRoutes(): void {
-    const routes = [UserDataRoutes]; //authenticated
+    const routes = [
+      UserDataRoutes,
+      ,
+      OrderRoutes,
+      customerRoutes,
+      refundRoutes,
+      reviewRoutes,
+      productRoutes,
+      shoppingCartRoutes,
+      wishlistRoutes,
+    ]; //authenticated
     //http:localhost:3001/order/get
 
-    const openRoutes: any[] = [UserRoutes,OrderRoutes]; //open routes
+    const openRoutes: any[] = [UserRoutes]; //open routes
 
     this.app.get("/", (req: Request, res: Response) => {
       res.json({ message: "App is running" });
