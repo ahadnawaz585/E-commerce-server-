@@ -13,6 +13,7 @@ datasource db {
 model User {
   id         String    @id @default(uuid())
   username   String    @unique
+  email      String  
   password   String
   role       Role
   customers  Customer[]
@@ -20,6 +21,12 @@ model User {
   createdAt       DateTime?
   updatedAt       DateTime?
   isDeleted       DateTime?
+}
+
+model OTP {
+  id String  @id @default(uuid())
+  email      String 
+  OTP        Int
 }
 
 
@@ -48,6 +55,7 @@ model Customer {
 }
 
 // Product Table
+// Product Table
 model Product {
   id              String      @id @default(uuid())
   name            String
@@ -55,6 +63,7 @@ model Product {
   price           Float
   category        String?
   stock_quantity  Int         @default(0)
+  image           String?     // New field for image URL
   shoppingCarts   ShoppingCart[]  // Added for bidirectional relation
   reviews         Review[]    // Added for bidirectional relation
   wishlists       Wishlist[]  // Added for bidirectional relation
@@ -62,6 +71,7 @@ model Product {
   updatedAt       DateTime?
   isDeleted       DateTime?
 }
+
 
 // Order Table
 // Order Table

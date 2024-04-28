@@ -5,10 +5,13 @@ import UserService from "../services/user.service";
 import BlackListedTokenService from "../services/blackListToken.service";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import OtpService from "../services/otp.service";
 import AuthHelper from "../helper/auth.helper";
-
+import nodemailer from "nodemailer";
+import { OTP } from "../Types/otp";
 class UserController extends BaseController<UserService> {
   protected service = new UserService();
+  protected otpService = new OtpService();
   protected tokenService = new BlackListedTokenService();
 
   async getUsers(req: Request, res: Response) {
@@ -59,19 +62,77 @@ class UserController extends BaseController<UserService> {
   }
 
   async loginUser(req: Request, res: Response) {
-    let { username, password, rememberMe } = req.body;
+    let { username, password, email, rememberMe } = req.body;
     let user: User | null = await this.service.getUserByUsername(username);
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(401).json({ message: "Invalid username or password" });
     }
 
-    const expiresIn = rememberMe ? "6M" : "24h";
-    let token = jwt.sign({ userId: user.id }, "your_secret_key", {
-      expiresIn,
+    const otp = Math.floor(Math.random() * 10000 + 1);
+
+    // Corrected createOTP call
+    this.otpService.creatOTP({
+      email: user.email,
+      OTP: otp,
     });
 
-    res.json({ token });
+    // Check if the user has an email
+    if (!user.email) {
+      return res.status(400).json({ message: "User does not have an email" });
+    }
+
+    try {
+      await this.sendOTPByEmail(user.email, otp);
+    } catch (error) {
+      console.error("Error sending OTP via email:", error);
+      return res.status(500).json({ message: "Failed to send OTP via email" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "OTP sent to your email for verification" });
+  }
+
+  async verifyOTP(req: Request, res: Response) {
+    let { username, password, email, rememberMe, otp } = req.body;
+    let user: User | null = await this.service.getUserByUsername(username);
+    const matched: boolean = await this.otpService.veriyOTP(email, otp);
+    const data: OTP = await this.otpService.getOTP(email, otp);
+
+    if (matched) {
+      if (!user || !bcrypt.compareSync(password, user.password)) {
+        return res
+          .status(401)
+          .json({ message: "Invalid username or password" });
+      }
+
+      const expiresIn = rememberMe ? "6M" : "24h";
+      let token = jwt.sign({ userId: user?.id }, "your_secret_key", {
+        expiresIn,
+      });
+      if (data.id) this.otpService.deleteOTP(data.id);
+      res.json({ token });
+    } else {
+      res.json({ message: "OTP is wrong" });
+    }
+  }
+
+  async sendOTPByEmail(email: string, otp: number) {
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "uchiha.itachi3553",
+        pass: "dfhgqxntdlcnozph",
+      },
+    });
+
+    await transporter.sendMail({
+      from: '"Your App" ahadnawaz585@gmail.com',
+      to: email,
+      subject: "OTP Verification",
+      text: `Your OTP for login is: ${otp}`,
+    });
   }
 
   async logoutUser(req: Request, res: Response) {
