@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 import { Product } from "../Types/product";
 import { Review } from "../Types/review";
 const productModel = prisma.$extends({

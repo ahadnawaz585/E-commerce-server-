@@ -1,5 +1,5 @@
 
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 
 const blacklistTokenModel = prisma.$extends({
   model: {

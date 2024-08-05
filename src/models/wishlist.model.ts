@@ -1,4 +1,4 @@
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 import { Customer } from "../Types/customer";
 import { Wishlist } from "../Types/whishlist";
 import { Prisma } from "@prisma/client";

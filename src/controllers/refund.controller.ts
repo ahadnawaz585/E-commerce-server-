@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import BaseController from './baseController';
+import BaseController from '../core/controller/baseController';
 import { Refund } from '../Types/refund';
 import { RefundStatus } from '../enums/refund';
 import RefundService from '../services/refund.service';

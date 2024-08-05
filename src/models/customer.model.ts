@@ -1,4 +1,4 @@
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 import { Customer } from "../Types/customer";
 const customerModel= prisma.$extends({
   model: {

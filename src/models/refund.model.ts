@@ -1,4 +1,4 @@
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 import { RefundStatus } from "../enums/refund";
 import { Refund } from "../Types/refund";
 import { Prisma } from "@prisma/client";

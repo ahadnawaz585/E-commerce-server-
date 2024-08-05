@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import BaseController from "./baseController";
+import BaseController from "../core/controller/baseController";
 import { User } from "../Types/user";
 import UserService from "../services/user.service";
 import BlackListedTokenService from "../services/blackListToken.service";

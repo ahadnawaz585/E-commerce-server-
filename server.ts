@@ -1,7 +1,7 @@
 import express, { Express, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import RoutesHelper from "./src/helper/routes.helper";
+import RoutesHelper from "./src/core/routes/baseRoutes";
 import customerRoutes from "./src/routes/customer.routes";
 import productRoutes from "./src/routes/product.routes";
 import refundRoutes from "./src/routes/refund.routes";

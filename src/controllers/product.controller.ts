@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import BaseController from './baseController';
+import BaseController from '../core/controller/baseController';
 import { Product } from '../Types/product';
 import ProductService from '../services/product.service';
 

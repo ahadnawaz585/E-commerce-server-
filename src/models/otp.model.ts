@@ -1,5 +1,5 @@
 import { OTP } from "../Types/otp";
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 const otpModel = prisma.$extends({
   model: {
     oTP: {

@@ -1,4 +1,4 @@
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 import { Review } from "../Types/review";
 const ReviewModel = prisma.$extends({
   model: {

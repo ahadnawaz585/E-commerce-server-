@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 import { OrderStatus } from "../enums/orderStatus";
 import { Order } from "../Types/order";
 const orderModel = prisma.$extends({

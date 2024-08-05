@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import authentication from '../middleware/authentication';
+import authentication from '../../middleware/authentication';
 
 class RoutesHelper {
 

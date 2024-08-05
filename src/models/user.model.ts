@@ -1,6 +1,6 @@
 
 import bcrypt from "bcrypt";
-import prisma from "./baseModel";
+import prisma from "../core/models/baseModel";
 
 const userModel = prisma.$extends({
   model: {
